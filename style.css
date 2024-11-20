@@ -1,0 +1,142 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #8d8d8d;
+    margin: 0;
+}
+
+.clock {
+    width: 30vw;
+    height: 30vw;
+    border: 1vw solid white;
+    border-radius: 50%;
+    position: relative;
+    padding: 0;
+    box-shadow: 0 0 20px white;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.outer-clock-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.inner-clock-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hand {
+    width: 50%;
+    background: black;
+    position: absolute;
+    left: 12.5%; /* Centers the pivot point horizontally */
+    transform-origin: 75%; /* The pivot point for rotation is the far right end */
+    transition: all 0.0000000005s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.hour-hand {
+    height: 5%;
+    background: black;
+    width: 40%;
+    left: 20%;
+    z-index: 2;
+}
+
+.min-hand {
+    height: 3.5%;
+    background: black;
+    z-index: 1;
+    width: 60%;
+    left: 5%;
+}
+
+.second-hand {
+    height: 1.5%;
+    background: red;
+    width: 45%;
+    left: 15%;
+    z-index: 3;
+}
+
+.second-hand::after {
+    content: "";
+    position: absolute;
+    top: -300%;
+    transform: translateX(-50%);
+    width: 3vw;
+    height: 3vw;
+    background-color: red;
+    border-radius: 50%;
+}
+
+
+/*? Display the hour markings ?*/
+.marking {
+    position: absolute;
+    width: 2%;
+    height: 35%;
+    background: black;
+    top: 15%;
+    left: 49.25%;
+    transform-origin: center bottom;
+    border-radius: 2px;
+}
+
+.adjustMarking {
+    position: absolute;
+    width: 3%;
+    height: 27.5%;
+    background: white;
+    top: 22.5%;
+    left: 49%;
+    transform-origin: center bottom;
+    border-radius: 2px;
+}
+
+/*? Display the minute markings ?*/
+.minute-marking {
+    z-index: 0;
+    position: absolute;
+    width: 1%;
+    height: 34.5%;
+    background: black;
+    top: 15.55%;
+    left: 49.5%;
+    transform-origin: center bottom;
+}
+
+.adjustMinuteMarking {
+    position: absolute;
+    width: 2.1%;
+    height: 32.5%;
+    background: white;
+    top: 17.5%;
+    left: 49.25%;
+    transform-origin: center bottom;
+    border-radius: 2px;
+}
+
+.marking-one{
+    display: none;
+}
+.marking-two{
+    display: none;
+}
+.marking-three{
+    display: none;
+}
+.marking-four{
+    display: none;
+}
