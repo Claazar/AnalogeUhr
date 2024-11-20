@@ -2,53 +2,85 @@ const hourHand = document.querySelector('.hour-hand');
 const minuteHand = document.querySelector('.min-hand');
 const secondHand = document.querySelector('.second-hand');
 
-let lastSecond = -1; // Keeps track of the last second value
+let lastSecond = -1; // Tracks the last second value
+let isPausing = false; // Controls the pause behavior
+
+function initializeClock() {
+    const now = new Date();
+
+    const seconds = now.getSeconds();
+    const minutes = now.getMinutes();
+    const hours = now.getHours();
+
+    // Set the initial positions for the minute and hour hands
+    const initialMinuteDegrees = (minutes / 60) * 360 + 90;
+    const initialHourDegrees = (hours / 12) * 360 + ((minutes / 60) * 30) + 90;
+
+    minuteHand.style.transform = `rotate(${initialMinuteDegrees}deg)`;
+    hourHand.style.transform = `rotate(${initialHourDegrees}deg)`;
+}
 
 function setDate() {
     const now = new Date();
 
     const seconds = now.getSeconds();
     const milliseconds = now.getMilliseconds();
+    const minutes = now.getMinutes();
+    const hours = now.getHours();
 
-    // This makes the second hand move smoothly
-    const secondsDegrees = ((seconds + milliseconds / 1000) / 60) * 360 + 90;
-    secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+    // Calculate the total elapsed time (faster than real-time: 58 seconds)
+    const elapsed = (seconds + milliseconds / 1000);
+    const adjustedElapsed = (elapsed / 58) * 60; // Adjust for faster movement
 
-    // Check if the second hand has reached the 12 o'clock position (i.e., seconds == 0)
-    if (seconds !== lastSecond) {
-        // Update the minute hand and hour hand only when the second hand hits the top
-        const minutes = now.getMinutes();
-        const minutesDegrees = ((minutes / 60) * 360) + 90; // No seconds movement here
-        minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
-
-        const hours = now.getHours();
-        const hoursDegrees = ((hours / 12) * 360) + ((minutes / 60) * 30) + 90; // Use minute-based movement for hours
-        hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+    if (isPausing) {
+        secondHand.style.transform = `rotate(90deg)`; // Pause at the top
+        return; // Stop updating during the pause
     }
 
-    // Store the current second for the next iteration
-    lastSecond = seconds;
+    // Move the second hand dynamically
+    const secondsDegrees = (adjustedElapsed / 60) * 360 + 90;
+    secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+    // When the second hand reaches the top
+    if (elapsed >= 58 && lastSecond < 58) {
+        isPausing = true;
+
+        // Move the minute and hour hands at the top
+        const minutesDegrees = ((minutes + 1) / 60) * 360 + 90; // +1 for the new minute
+        const hoursDegrees = ((hours / 12) * 360) + (((minutes + 1) / 60) * 30) + 90;
+
+        setTimeout(() => {
+            // Update minute and hour hands after pause
+            minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+            hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+
+            isPausing = false; // Resume after the pause
+        }, (60 - elapsed) * 1000); // Pause for the remaining time of the minute
+    }
+
+    lastSecond = elapsed; // Update the last second value
 }
 
-setInterval(setDate, 16);  // Refreshes every 16ms (~60fps)
-setDate();  // Initial call to set the clock immediately
+// Initialize clock hands
+initializeClock();
+setInterval(setDate, 16); // Refresh every 16ms (~60fps)
+setDate(); // Initial call to set the clock immediately
 
-
-// Code for adding hour and minute markings (unchanged from your previous code)
-const clock = document.querySelector(".clock");
+// Add hour and minute markings (unchanged from your code)
+const clock = document.querySelector('.clock');
 
 // Add hour markings
 for (let i = 0; i < 12; i++) {
-    const hourMark = document.createElement("div");
-    hourMark.classList.add("marking");
+    const hourMark = document.createElement('div');
+    hourMark.classList.add('marking');
     hourMark.style.transform = `rotate(${i * 30}deg) translate(0, -45%)`;
     clock.appendChild(hourMark);
 }
 
 // Adjust the hour markings
 for (let i = 0; i < 12; i++) {
-    const hourMark = document.createElement("div");
-    hourMark.classList.add("adjustMarking");
+    const hourMark = document.createElement('div');
+    hourMark.classList.add('adjustMarking');
     hourMark.style.transform = `rotate(${i * 30}deg) translate(0, -45%)`;
     clock.appendChild(hourMark);
 }
@@ -56,8 +88,8 @@ for (let i = 0; i < 12; i++) {
 // Add minute markings
 for (let i = 0; i < 60; i++) {
     if (i % 5 !== 0) {
-        const minuteMark = document.createElement("div");
-        minuteMark.classList.add("minute-marking");
+        const minuteMark = document.createElement('div');
+        minuteMark.classList.add('minute-marking');
         minuteMark.style.transform = `rotate(${i * 6}deg) translate(0, -45%)`;
         clock.appendChild(minuteMark);
     }
@@ -66,8 +98,8 @@ for (let i = 0; i < 60; i++) {
 // Adjust the minute markings
 for (let i = 0; i < 60; i++) {
     if (i % 5 !== 0) {
-        const minuteMark = document.createElement("div");
-        minuteMark.classList.add("adjustMinuteMarking");
+        const minuteMark = document.createElement('div');
+        minuteMark.classList.add('adjustMinuteMarking');
         minuteMark.style.transform = `rotate(${i * 6}deg) translate(0, -45%)`;
         clock.appendChild(minuteMark);
     }

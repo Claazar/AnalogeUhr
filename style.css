@@ -42,8 +42,6 @@ body {
     position: absolute;
     left: 12.5%; /* Centers the pivot point horizontally */
     transform-origin: 75%; /* The pivot point for rotation is the far right end */
-    transition: all 0.0000000005s;
-    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 
 .hour-hand {
@@ -52,6 +50,7 @@ body {
     width: 40%;
     left: 20%;
     z-index: 2;
+    transition: transform 0.7s cubic-bezier(0.25, 1.4, 0.4, 1.2); /* Wiggle effect */
 }
 
 .min-hand {
@@ -60,6 +59,7 @@ body {
     z-index: 1;
     width: 60%;
     left: 5%;
+    /*transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);*/
 }
 
 .second-hand {
@@ -81,8 +81,7 @@ body {
     border-radius: 50%;
 }
 
-
-/*? Display the hour markings ?*/
+/* Hour markings */
 .marking {
     position: absolute;
     width: 2%;
@@ -105,7 +104,7 @@ body {
     border-radius: 2px;
 }
 
-/*? Display the minute markings ?*/
+/* Minute markings */
 .minute-marking {
     z-index: 0;
     position: absolute;
@@ -128,15 +127,18 @@ body {
     border-radius: 2px;
 }
 
-.marking-one{
+.marking-one {
     display: none;
 }
-.marking-two{
+
+.marking-two {
     display: none;
 }
-.marking-three{
+
+.marking-three {
     display: none;
 }
-.marking-four{
+
+.marking-four {
     display: none;
 }
