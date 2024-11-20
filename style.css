@@ -1,144 +1,142 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #8d8d8d;
-    margin: 0;
+    display: flex; /* Enables flexbox layout */
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center; /* Centers the content vertically */
+    height: 100vh; /* Makes the body take up the full viewport height */
+    background: #8d8d8d; /* Sets a grey background color */
+    margin: 0; /* Removes default margin */
 }
 
 .clock {
-    width: 30vw;
-    height: 30vw;
-    border: 1vw solid white;
-    border-radius: 50%;
-    position: relative;
-    padding: 0;
-    box-shadow: 0 0 20px white;
-    background: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 30vw; /* Sets the width of the clock to 30% of the viewport width */
+    height: 30vw; /* Sets the height of the clock to 30% of the viewport width */
+    border: 1vw solid white; /* Creates a white border around the clock */
+    border-radius: 50%; /* Makes the clock a circle */
+    position: relative; /* Establishes a positioning context for child elements */
+    padding: 0; /* Removes any padding */
+    box-shadow: 0 0 20px white; /* Adds a soft white glow around the clock */
+    background: white; /* Sets the background color of the clock */
+    display: flex; /* Uses flexbox to position child elements */
+    justify-content: center; /* Centers the child elements horizontally */
+    align-items: center; /* Centers the child elements vertically */
 }
 
 .outer-clock-face {
-    position: relative;
-    width: 100%;
-    height: 100%;
+    position: relative; /* Establishes a positioning context for the outer clock face */
+    width: 100%; /* Ensures the outer clock face takes up the full width */
+    height: 100%; /* Ensures the outer clock face takes up the full height */
 }
 
 .inner-clock-face {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative; /* Establishes a positioning context for the inner clock face */
+    width: 100%; /* Ensures the inner clock face takes up the full width */
+    height: 100%; /* Ensures the inner clock face takes up the full height */
+    display: flex; /* Uses flexbox to position child elements */
+    justify-content: center; /* Centers the child elements horizontally */
+    align-items: center; /* Centers the child elements vertically */
 }
 
 .hand {
-    width: 50%;
-    background: black;
-    position: absolute;
-    left: 12.5%; /* Centers the pivot point horizontally */
-    transform-origin: 75%; /* The pivot point for rotation is the far right end */
+    width: 50%; /* Sets the width of the hand to 50% of the clock face */
+    background: black; /* Sets the hand's color to black */
+    position: absolute; /* Positions the hand absolutely within the clock */
+    left: 12.5%; /* Centers the hand horizontally */
+    transform-origin: 75%; /* Sets the pivot point of the hand to its far right end */
 }
 
 .hour-hand {
-    height: 5%;
-    background: black;
-    width: 40%;
-    left: 20%;
-    z-index: 2;
-    transition: transform 0.7s cubic-bezier(0.25, 1.4, 0.4, 1.2); /* Wiggle effect */
+    height: 5%; /* Sets the height of the hour hand */
+    background: black; /* Sets the hour hand's color to black */
+    width: 40%; /* Sets the width of the hour hand */
+    left: 20%; /* Positions the hour hand horizontally */
+    z-index: 2; /* Ensures the hour hand is above other elements */
 }
 
 .min-hand {
-    height: 3.5%;
-    background: black;
-    z-index: 1;
-    width: 60%;
-    left: 5%;
-    /*transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);*/
+    height: 3.5%; /* Sets the height of the minute hand */
+    background: black; /* Sets the minute hand's color to black */
+    z-index: 1; /* Positions the minute hand below the second hand */
+    width: 60%; /* Sets the width of the minute hand */
+    left: 5%; /* Positions the minute hand horizontally */
 }
 
 .second-hand {
-    height: 1.5%;
-    background: red;
-    width: 45%;
-    left: 15%;
-    z-index: 3;
+    height: 1.5%; /* Sets the height of the second hand */
+    background: red; /* Sets the second hand's color to red */
+    width: 45%; /* Sets the width of the second hand */
+    left: 15%; /* Positions the second hand horizontally */
+    z-index: 3; /* Ensures the second hand is on top of all other elements */
 }
 
 .second-hand::after {
-    content: "";
-    position: absolute;
-    top: -300%;
-    transform: translateX(-50%);
-    width: 3vw;
-    height: 3vw;
-    background-color: red;
-    border-radius: 50%;
+    content: ""; /* Creates a pseudo-element for the second hand's tip */
+    position: absolute; /* Positions the pseudo-element absolutely */
+    top: -300%; /* Moves the pseudo-element far above the second hand */
+    transform: translateX(-50%); /* Centers the pseudo-element horizontally */
+    width: 3vw; /* Sets the width of the pseudo-element */
+    height: 3vw; /* Sets the height of the pseudo-element */
+    background-color: red; /* Sets the color of the pseudo-element to red */
+    border-radius: 50%; /* Makes the pseudo-element a circle */
 }
 
 /* Hour markings */
 .marking {
-    position: absolute;
-    width: 2%;
-    height: 35%;
-    background: black;
-    top: 15%;
-    left: 49.25%;
-    transform-origin: center bottom;
-    border-radius: 2px;
+    position: absolute; /* Positions the hour markings absolutely */
+    width: 2%; /* Sets the width of the hour markings */
+    height: 35%; /* Sets the height of the hour markings */
+    background: black; /* Sets the color of the hour markings */
+    top: 15%; /* Positions the markings vertically */
+    left: 49.25%; /* Positions the markings horizontally */
+    transform-origin: center bottom; /* Sets the pivot point for rotation */
+    border-radius: 2px; /* Rounds the corners of the markings */
 }
 
 .adjustMarking {
-    position: absolute;
-    width: 3%;
-    height: 27.5%;
-    background: white;
-    top: 22.5%;
-    left: 49%;
-    transform-origin: center bottom;
-    border-radius: 2px;
+    position: absolute; /* Positions the adjusted markings absolutely */
+    width: 3%; /* Sets the width of the adjusted markings */
+    height: 27.5%; /* Sets the height of the adjusted markings */
+    background: white; /* Sets the color of the adjusted markings */
+    top: 22.5%; /* Positions the adjusted markings vertically */
+    left: 49%; /* Positions the adjusted markings horizontally */
+    transform-origin: center bottom; /* Sets the pivot point for rotation */
+    border-radius: 2px; /* Rounds the corners of the markings */
 }
 
 /* Minute markings */
 .minute-marking {
-    z-index: 0;
-    position: absolute;
-    width: 1%;
-    height: 34.5%;
-    background: black;
-    top: 15.55%;
-    left: 49.5%;
-    transform-origin: center bottom;
+    z-index: 0; /* Positions the minute markings below the hands */
+    position: absolute; /* Positions the minute markings absolutely */
+    width: 1%; /* Sets the width of the minute markings */
+    height: 34.5%; /* Sets the height of the minute markings */
+    background: black; /* Sets the color of the minute markings */
+    top: 15.55%; /* Positions the minute markings vertically */
+    left: 49.5%; /* Positions the minute markings horizontally */
+    transform-origin: center bottom; /* Sets the pivot point for rotation */
 }
 
 .adjustMinuteMarking {
-    position: absolute;
-    width: 2.1%;
-    height: 32.5%;
-    background: white;
-    top: 17.5%;
-    left: 49.25%;
-    transform-origin: center bottom;
-    border-radius: 2px;
+    position: absolute; /* Positions the adjusted minute markings absolutely */
+    width: 2.1%; /* Sets the width of the adjusted minute markings */
+    height: 32.5%; /* Sets the height of the adjusted minute markings */
+    background: white; /* Sets the color of the adjusted minute markings */
+    top: 17.5%; /* Positions the adjusted minute markings vertically */
+    left: 49.25%; /* Positions the adjusted minute markings horizontally */
+    transform-origin: center bottom; /* Sets the pivot point for rotation */
+    border-radius: 2px; /* Rounds the corners of the markings */
 }
 
 .marking-one {
-    display: none;
+    display: none; /* Hides the first marking */
 }
 
 .marking-two {
-    display: none;
+    display: none; /* Hides the second marking */
 }
 
 .marking-three {
-    display: none;
+    display: none; /* Hides the third marking */
 }
 
 .marking-four {
-    display: none;
+    display: none; /* Hides the fourth marking */
 }
