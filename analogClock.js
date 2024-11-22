@@ -1,3 +1,10 @@
+/*******************************
+ * FILE      : analogClock.js
+ * AUTHOR    : Claazar
+ * CREATED   : 20-11-2024
+ * PURPOSE   : Controls clock animations and  dial
+ *******************************/
+
 const hourHand = document.querySelector('.hour-hand');
 const minuteHand = document.querySelector('.min-hand');
 const secondHand = document.querySelector('.second-hand');
@@ -5,17 +12,17 @@ const secondHand = document.querySelector('.second-hand');
 let lastSecond = -1; // Tracks the last second value
 let isPausing = false; // Controls the pause behavior
 
-// Wiggle effect function
-const wiggleEffect = (element, baseDegrees) => {
+// Wiggle effect function with customizable intensity
+const wiggleEffect = (element, baseDegrees, intensity = 2) => {
     const wiggleFrames = [
         { transform: `rotate(${baseDegrees}deg)` },
-        { transform: `rotate(${baseDegrees - 2}deg)` },
-        { transform: `rotate(${baseDegrees + 2}deg)` },
+        { transform: `rotate(${baseDegrees - intensity}deg)` }, // Wiggle left
+        { transform: `rotate(${baseDegrees + intensity}deg)` }, // Wiggle right
         { transform: `rotate(${baseDegrees}deg)` }
     ];
 
     const wiggleTiming = {
-        duration: 300, // 300ms for wiggle effect
+        duration: 600, // 600ms for wiggle effect
         iterations: 1, // Only wiggle once
     };
 
@@ -65,7 +72,7 @@ function setDate() {
     if (elapsed >= 58 && lastSecond < 58) {
         isPausing = true;
 
-        // Move the minute and hour hands at the top
+        // Move the minute and hour hands
         const minutesDegrees = ((minutes + 1) / 60) * 360 + 90; // +1 for the new minute
         const hoursDegrees = ((hours / 12) * 360) + (((minutes + 1) / 60) * 30) + 90;
 
@@ -75,8 +82,8 @@ function setDate() {
             hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
 
             // Trigger the wiggle effect for both hands
-            wiggleEffect(minuteHand, minutesDegrees);
-            wiggleEffect(hourHand, hoursDegrees);
+            wiggleEffect(minuteHand, minutesDegrees, 5); // Intensity of 4 for minute hand
+            wiggleEffect(hourHand, hoursDegrees, 2); // Half intensity (2) for hour hand
 
             isPausing = false; // Resume after the pause
         }, (60 - elapsed) * 1000); // Pause for the remaining time of the minute
