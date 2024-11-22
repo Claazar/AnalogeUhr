@@ -11,7 +11,6 @@ For those who are unfamiliar, the **SBB Clock** has a unique behavior when a min
 - It waits for confirmation from the atomic clock in Bern that the minute is over.
 - Once the second hand starts moving again, the minute and hour hands "snap" into place with a slight **wiggle**.
 
-Unfortunatally, I have not been able to recreate the Wiggle animation but will add it in the future.
 
 ### How to Use
 
