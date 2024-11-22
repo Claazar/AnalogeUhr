@@ -5,6 +5,23 @@ const secondHand = document.querySelector('.second-hand');
 let lastSecond = -1; // Tracks the last second value
 let isPausing = false; // Controls the pause behavior
 
+// Wiggle effect function
+const wiggleEffect = (element, baseDegrees) => {
+    const wiggleFrames = [
+        { transform: `rotate(${baseDegrees}deg)` },
+        { transform: `rotate(${baseDegrees - 2}deg)` },
+        { transform: `rotate(${baseDegrees + 2}deg)` },
+        { transform: `rotate(${baseDegrees}deg)` }
+    ];
+
+    const wiggleTiming = {
+        duration: 300, // 300ms for wiggle effect
+        iterations: 1, // Only wiggle once
+    };
+
+    element.animate(wiggleFrames, wiggleTiming);
+};
+
 function initializeClock() {
     const now = new Date();
 
@@ -37,6 +54,9 @@ function setDate() {
         return; // Stop updating during the pause
     }
 
+    // Remove transition when updating dynamically for the second hand
+    secondHand.style.transition = "none";
+
     // Move the second hand dynamically
     const secondsDegrees = (adjustedElapsed / 60) * 360 + 90;
     secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
@@ -53,6 +73,10 @@ function setDate() {
             // Update minute and hour hands after pause
             minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
             hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+
+            // Trigger the wiggle effect for both hands
+            wiggleEffect(minuteHand, minutesDegrees);
+            wiggleEffect(hourHand, hoursDegrees);
 
             isPausing = false; // Resume after the pause
         }, (60 - elapsed) * 1000); // Pause for the remaining time of the minute
