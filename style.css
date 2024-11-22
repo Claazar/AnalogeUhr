@@ -64,7 +64,7 @@ body {
     height: 1.5%; /* Sets the height of the second hand */
     background: red; /* Sets the second hand's color to red */
     width: 45%; /* Sets the width of the second hand */
-    left: 15%; /* Positions the second hand horizontally */
+    left: 16%; /* Positions the second hand horizontally */
     z-index: 3; /* Ensures the second hand is on top of all other elements */
 }
 
@@ -78,6 +78,7 @@ body {
     background-color: red; /* Sets the color of the pseudo-element to red */
     border-radius: 50%; /* Makes the pseudo-element a circle */
 }
+
 
 /* Hour markings */
 .marking {
