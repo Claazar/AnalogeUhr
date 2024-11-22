@@ -1,3 +1,11 @@
+/*******************************
+ * FILE      : style.css
+ * AUTHOR    : Claazar
+ * CREATED   : 20-11-2024
+ * PURPOSE   : Controls the look of the clock
+ *******************************/
+
+
 body {
     display: flex; /* Enables flexbox layout */
     justify-content: center; /* Centers the content horizontally */
