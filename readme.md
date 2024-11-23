@@ -14,6 +14,6 @@ For those who are unfamiliar, the **SBB Clock** has a unique behavior when a min
 
 ### How to Use
 
-To use this clock, simply download or clone this project and open the **HTML** file in your browser of choice. The clock will behave as described, with the second hand pausing at the top, waiting for the minute to finish, and then the hands snapping into place with a wiggle effect.
+To use this clock, you can either download and open the Project using the **HTML** file or you simply view the finished product via: [https://claazar.github.io/AnalogeUhr/](https://claazar.github.io/AnalogeUhr/).
 
 Enjoy and feel free to improve it or give me feedback!
